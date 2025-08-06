@@ -1,0 +1,339 @@
+{
+  "last_node_id": 18,
+  "last_link_id": 26,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "FactoryColorHarmonist",
+      "pos": [100, 100],
+      "size": {"0": 350, "1": 300},
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {"name": "base_prompt", "type": "STRING", "link": 26, "widget": {"name": "base_prompt"}}
+      ],
+      "outputs": [
+        {"name": "enhanced_prompt", "type": "STRING", "links": [1, 2, 3, 4], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "FactoryColorHarmonist"},
+      "widgets_values": [
+        "vibrant_energetic",
+        "modern_urban",
+        "social_media_bright",
+        "entertainment_media",
+        "very_high"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "FactorySizeOptimizer",
+      "pos": [500, 100],
+      "size": {"0": 350, "1": 200},
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {"name": "base_prompt", "type": "STRING", "link": 1}
+      ],
+      "outputs": [
+        {"name": "enhanced_prompt", "type": "STRING", "links": [5], "slot_index": 0},
+        {"name": "width", "type": "INT", "links": [6], "slot_index": 1},
+        {"name": "height", "type": "INT", "links": [7], "slot_index": 2}
+      ],
+      "properties": {"Node name for S&R": "FactorySizeOptimizer"},
+      "widgets_values": [
+        "instagram_story",
+        "social_media_optimized",
+        "9:16",
+        "very_high"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "FactorySizeOptimizer",
+      "pos": [500, 350],
+      "size": {"0": 350, "1": 200},
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {"name": "base_prompt", "type": "STRING", "link": 2}
+      ],
+      "outputs": [
+        {"name": "enhanced_prompt", "type": "STRING", "links": [8], "slot_index": 0},
+        {"name": "width", "type": "INT", "links": [9], "slot_index": 1},
+        {"name": "height", "type": "INT", "links": [10], "slot_index": 2}
+      ],
+      "properties": {"Node name for S&R": "FactorySizeOptimizer"},
+      "widgets_values": [
+        "instagram_square",
+        "social_media_optimized",
+        "1:1",
+        "very_high"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "FactorySizeOptimizer",
+      "pos": [500, 600],
+      "size": {"0": 350, "1": 200},
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {"name": "base_prompt", "type": "STRING", "link": 3}
+      ],
+      "outputs": [
+        {"name": "enhanced_prompt", "type": "STRING", "links": [11], "slot_index": 0},
+        {"name": "width", "type": "INT", "links": [12], "slot_index": 1},
+        {"name": "height", "type": "INT", "links": [13], "slot_index": 2}
+      ],
+      "properties": {"Node name for S&R": "FactorySizeOptimizer"},
+      "widgets_values": [
+        "youtube_thumbnail",
+        "social_media_optimized",
+        "16:9",
+        "very_high"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "FactorySizeOptimizer",
+      "pos": [500, 850],
+      "size": {"0": 350, "1": 200},
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {"name": "base_prompt", "type": "STRING", "link": 4}
+      ],
+      "outputs": [
+        {"name": "enhanced_prompt", "type": "STRING", "links": [14], "slot_index": 0},
+        {"name": "width", "type": "INT", "links": [15], "slot_index": 1},
+        {"name": "height", "type": "INT", "links": [16], "slot_index": 2}
+      ],
+      "properties": {"Node name for S&R": "FactorySizeOptimizer"},
+      "widgets_values": [
+        "pinterest_standard",
+        "social_media_optimized",
+        "2:3",
+        "very_high"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "CheckpointLoaderSimple",
+      "pos": [900, 100],
+      "size": {"0": 315, "1": 98},
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "outputs": [
+        {"name": "MODEL", "type": "MODEL", "links": [17], "slot_index": 0},
+        {"name": "CLIP", "type": "CLIP", "links": [18, 19], "slot_index": 1},
+        {"name": "VAE", "type": "VAE", "links": [20], "slot_index": 2}
+      ],
+      "properties": {"Node name for S&R": "CheckpointLoaderSimple"},
+      "widgets_values": ["sd_xl_base_1.0.safetensors"]
+    },
+    {
+      "id": 7,
+      "type": "CLIPTextEncode",
+      "pos": [1300, 100],
+      "size": {"0": 400, "1": 200},
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {"name": "clip", "type": "CLIP", "link": 18},
+        {"name": "text", "type": "STRING", "link": 5, "widget": {"name": "text"}}
+      ],
+      "outputs": [
+        {"name": "CONDITIONING", "type": "CONDITIONING", "links": [21], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "CLIPTextEncode"},
+      "widgets_values": [""]
+    },
+    {
+      "id": 8,
+      "type": "CLIPTextEncode",
+      "pos": [1300, 350],
+      "size": {"0": 400, "1": 200},
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {"name": "clip", "type": "CLIP", "link": 19},
+        {"name": "text", "type": "STRING", "link": null, "widget": {"name": "text"}}
+      ],
+      "outputs": [
+        {"name": "CONDITIONING", "type": "CONDITIONING", "links": [22], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "CLIPTextEncode"},
+      "widgets_values": ["blurry, low quality, distorted, artifacts, bad composition, oversaturated"]
+    },
+    {
+      "id": 9,
+      "type": "EmptyLatentImage",
+      "pos": [1750, 100],
+      "size": {"0": 315, "1": 106},
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {"name": "width", "type": "INT", "link": 6, "widget": {"name": "width"}},
+        {"name": "height", "type": "INT", "link": 7, "widget": {"name": "height"}}
+      ],
+      "outputs": [
+        {"name": "LATENT", "type": "LATENT", "links": [23], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "EmptyLatentImage"},
+      "widgets_values": [1080, 1920, 1]
+    },
+    {
+      "id": 10,
+      "type": "KSampler",
+      "pos": [2150, 100],
+      "size": {"0": 315, "1": 262},
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 17},
+        {"name": "positive", "type": "CONDITIONING", "link": 21},
+        {"name": "negative", "type": "CONDITIONING", "link": 22},
+        {"name": "latent_image", "type": "LATENT", "link": 23}
+      ],
+      "outputs": [
+        {"name": "LATENT", "type": "LATENT", "links": [24], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "KSampler"},
+      "widgets_values": [42, "randomize", 20, 7, "euler", "normal", 1]
+    },
+    {
+      "id": 11,
+      "type": "VAEDecode",
+      "pos": [2550, 100],
+      "size": {"0": 210, "1": 46},
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {"name": "samples", "type": "LATENT", "link": 24},
+        {"name": "vae", "type": "VAE", "link": 20}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [25], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "VAEDecode"}
+    },
+    {
+      "id": 12,
+      "type": "SaveImage",
+      "pos": [2850, 100],
+      "size": {"0": 315, "1": 270},
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {"name": "images", "type": "IMAGE", "link": 25}
+      ],
+      "properties": {"Node name for S&R": "SaveImage"},
+      "widgets_values": ["Social_Media_Campaign"]
+    },
+    {
+      "id": 13,
+      "type": "PrimitiveNode",
+      "pos": [100, 450],
+      "size": {"0": 350, "1": 200},
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {"name": "STRING", "type": "STRING", "links": [26], "slot_index": 0}
+      ],
+      "title": "Base Prompt",
+      "properties": {"Node name for S&R": "PrimitiveNode"},
+      "widgets_values": ["beautiful woman portrait, professional photography, studio lighting, high resolution"]
+    },
+    {
+      "id": 14,
+      "type": "Note",
+      "pos": [900, 250],
+      "size": {"0": 400, "1": 150},
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "properties": {"Node name for S&R": "Note"},
+      "widgets_values": ["MULTI-PLATFORM WORKFLOW:\n\nThis workflow shows how to use one enhanced prompt for multiple social media formats. Connect each Size Optimizer to separate generation pipelines for simultaneous multi-format output.\n\nCurrently configured for Instagram Story (9:16) format."]
+    },
+    {
+      "id": 15,
+      "type": "Note",
+      "pos": [500, 1100],
+      "size": {"0": 350, "1": 100},
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "properties": {"Node name for S&R": "Note"},
+      "widgets_values": ["Additional Size Outputs:\n- Square: 1:1 (1080x1080)\n- YouTube: 16:9 (1920x1080) \n- Pinterest: 2:3 (1080x1620)"]
+    }
+  ],
+  "links": [
+    [1, 1, 0, 2, 0, "STRING"],
+    [2, 1, 0, 3, 0, "STRING"],
+    [3, 1, 0, 4, 0, "STRING"],
+    [4, 1, 0, 5, 0, "STRING"],
+    [5, 2, 0, 7, 1, "STRING"],
+    [6, 2, 1, 9, 0, "INT"],
+    [7, 2, 2, 9, 1, "INT"],
+    [8, 3, 0, 14, 0, "STRING"],
+    [9, 3, 1, 15, 0, "INT"],
+    [10, 3, 2, 15, 1, "INT"],
+    [11, 4, 0, 16, 0, "STRING"],
+    [12, 4, 1, 17, 0, "INT"],
+    [13, 4, 2, 17, 1, "INT"],
+    [14, 5, 0, 18, 0, "STRING"],
+    [15, 5, 1, 19, 0, "INT"],
+    [16, 5, 2, 19, 1, "INT"],
+    [17, 6, 0, 10, 0, "MODEL"],
+    [18, 6, 1, 7, 0, "CLIP"],
+    [19, 6, 1, 8, 0, "CLIP"],
+    [20, 6, 2, 11, 1, "VAE"],
+    [21, 7, 0, 10, 1, "CONDITIONING"],
+    [22, 8, 0, 10, 2, "CONDITIONING"],
+    [23, 9, 0, 10, 3, "LATENT"],
+    [24, 10, 0, 11, 0, "LATENT"],
+    [25, 11, 0, 12, 0, "IMAGE"],
+    [26, 13, 0, 1, 0, "STRING"]
+  ],
+  "groups": [
+    {
+      "title": "Camera Factory Station - Multi-Platform Social Media Campaign",
+      "bounding": [50, 50, 850, 1050],
+      "color": "#e6194b",
+      "font_size": 24
+    },
+    {
+      "title": "ComfyUI Generation Pipeline (Instagram Story 9:16)",
+      "bounding": [850, 50, 2400, 400],
+      "color": "#8A8",
+      "font_size": 20
+    },
+    {
+      "title": "Size Options Available",
+      "bounding": [450, 50, 450, 1000],
+      "color": "#3f789e",
+      "font_size": 16
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.5,
+      "offset": [0, 0]
+    }
+  },
+  "version": 0.4
+}

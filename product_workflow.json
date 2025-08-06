@@ -1,0 +1,311 @@
+{
+  "last_node_id": 15,
+  "last_link_id": 22,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "FactoryCameraOperator",
+      "pos": [100, 100],
+      "size": {"0": 350, "1": 400},
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {"name": "base_prompt", "type": "STRING", "link": null, "widget": {"name": "base_prompt"}}
+      ],
+      "outputs": [
+        {"name": "enhanced_prompt", "type": "STRING", "links": [1], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "FactoryCameraOperator"},
+      "widgets_values": [
+        "wireless headphones product shot",
+        "commercial",
+        "product_hero",
+        "high_end",
+        "macro",
+        "product_photography",
+        "focus_stacking",
+        "three_quarter",
+        "dynamic",
+        "static",
+        "studio",
+        "low_iso_100",
+        "medium_sharp",
+        "daylight_5600k",
+        "auto",
+        "auto",
+        "auto",
+        "auto",
+        "very_high"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "FactoryColorHarmonist",
+      "pos": [500, 100],
+      "size": {"0": 350, "1": 300},
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {"name": "base_prompt", "type": "STRING", "link": 1}
+      ],
+      "outputs": [
+        {"name": "enhanced_prompt", "type": "STRING", "links": [2], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "FactoryColorHarmonist"},
+      "widgets_values": [
+        "neutral_palette",
+        "modern_minimal",
+        "clean_minimal",
+        "tech_industry",
+        "high"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "FactoryLightingStudio",
+      "pos": [900, 100],
+      "size": {"0": 350, "1": 250},
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {"name": "base_prompt", "type": "STRING", "link": 2}
+      ],
+      "outputs": [
+        {"name": "enhanced_prompt", "type": "STRING", "links": [3], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "FactoryLightingStudio"},
+      "widgets_values": [
+        "product_table",
+        "studio_controlled",
+        "softbox_large",
+        "clean_commercial",
+        "very_high"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "FactoryProductPhotographer",
+      "pos": [1300, 100],
+      "size": {"0": 350, "1": 300},
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {"name": "base_prompt", "type": "STRING", "link": 3}
+      ],
+      "outputs": [
+        {"name": "enhanced_prompt", "type": "STRING", "links": [4], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "FactoryProductPhotographer"},
+      "widgets_values": [
+        "amazon_optimized",
+        "marketplace_standard",
+        "electronics_tech",
+        "innovative_tech",
+        "very_high"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "FactorySizeOptimizer",
+      "pos": [1700, 100],
+      "size": {"0": 350, "1": 200},
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {"name": "base_prompt", "type": "STRING", "link": 4}
+      ],
+      "outputs": [
+        {"name": "enhanced_prompt", "type": "STRING", "links": [5], "slot_index": 0},
+        {"name": "width", "type": "INT", "links": [6], "slot_index": 1},
+        {"name": "height", "type": "INT", "links": [7], "slot_index": 2}
+      ],
+      "properties": {"Node name for S&R": "FactorySizeOptimizer"},
+      "widgets_values": [
+        "amazon_main",
+        "e_commerce_standard",
+        "1:1",
+        "very_high"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "CheckpointLoaderSimple",
+      "pos": [100, 450],
+      "size": {"0": 315, "1": 98},
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "outputs": [
+        {"name": "MODEL", "type": "MODEL", "links": [8], "slot_index": 0},
+        {"name": "CLIP", "type": "CLIP", "links": [9, 11], "slot_index": 1},
+        {"name": "VAE", "type": "VAE", "links": [15], "slot_index": 2}
+      ],
+      "properties": {"Node name for S&R": "CheckpointLoaderSimple"},
+      "widgets_values": ["sd_xl_base_1.0.safetensors"]
+    },
+    {
+      "id": 7,
+      "type": "CLIPTextEncode",
+      "pos": [500, 450],
+      "size": {"0": 400, "1": 200},
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {"name": "clip", "type": "CLIP", "link": 9},
+        {"name": "text", "type": "STRING", "link": 5, "widget": {"name": "text"}}
+      ],
+      "outputs": [
+        {"name": "CONDITIONING", "type": "CONDITIONING", "links": [12], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "CLIPTextEncode"},
+      "widgets_values": [""]
+    },
+    {
+      "id": 8,
+      "type": "CLIPTextEncode",
+      "pos": [500, 700],
+      "size": {"0": 400, "1": 200},
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {"name": "clip", "type": "CLIP", "link": 11},
+        {"name": "text", "type": "STRING", "link": null, "widget": {"name": "text"}}
+      ],
+      "outputs": [
+        {"name": "CONDITIONING", "type": "CONDITIONING", "links": [13], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "CLIPTextEncode"},
+      "widgets_values": ["blurry, low quality, distorted, artifacts, bad lighting, unprofessional, cluttered background"]
+    },
+    {
+      "id": 9,
+      "type": "EmptyLatentImage",
+      "pos": [900, 450],
+      "size": {"0": 315, "1": 106},
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {"name": "width", "type": "INT", "link": 6, "widget": {"name": "width"}},
+        {"name": "height", "type": "INT", "link": 7, "widget": {"name": "height"}}
+      ],
+      "outputs": [
+        {"name": "LATENT", "type": "LATENT", "links": [14], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "EmptyLatentImage"},
+      "widgets_values": [1024, 1024, 1]
+    },
+    {
+      "id": 10,
+      "type": "KSampler",
+      "pos": [1300, 450],
+      "size": {"0": 315, "1": 262},
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 8},
+        {"name": "positive", "type": "CONDITIONING", "link": 12},
+        {"name": "negative", "type": "CONDITIONING", "link": 13},
+        {"name": "latent_image", "type": "LATENT", "link": 14}
+      ],
+      "outputs": [
+        {"name": "LATENT", "type": "LATENT", "links": [16], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "KSampler"},
+      "widgets_values": [42, "randomize", 30, 8, "euler", "normal", 1]
+    },
+    {
+      "id": 11,
+      "type": "VAEDecode",
+      "pos": [1700, 450],
+      "size": {"0": 210, "1": 46},
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {"name": "samples", "type": "LATENT", "link": 16},
+        {"name": "vae", "type": "VAE", "link": 15}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [17, 18], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "VAEDecode"}
+    },
+    {
+      "id": 12,
+      "type": "SaveImage",
+      "pos": [2000, 450],
+      "size": {"0": 315, "1": 270},
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {"name": "images", "type": "IMAGE", "link": 17}
+      ],
+      "properties": {"Node name for S&R": "SaveImage"},
+      "widgets_values": ["Product_Amazon_Ready"]
+    },
+    {
+      "id": 13,
+      "type": "PreviewImage",
+      "pos": [2000, 750],
+      "size": {"0": 315, "1": 246},
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {"name": "images", "type": "IMAGE", "link": 18}
+      ],
+      "properties": {"Node name for S&R": "PreviewImage"}
+    }
+  ],
+  "links": [
+    [1, 1, 0, 2, 0, "STRING"],
+    [2, 2, 0, 3, 0, "STRING"],
+    [3, 3, 0, 4, 0, "STRING"],
+    [4, 4, 0, 5, 0, "STRING"],
+    [5, 5, 0, 7, 1, "STRING"],
+    [6, 5, 1, 9, 0, "INT"],
+    [7, 5, 2, 9, 1, "INT"],
+    [8, 6, 0, 10, 0, "MODEL"],
+    [9, 6, 1, 7, 0, "CLIP"],
+    [11, 6, 1, 8, 0, "CLIP"],
+    [12, 7, 0, 10, 1, "CONDITIONING"],
+    [13, 8, 0, 10, 2, "CONDITIONING"],
+    [14, 9, 0, 10, 3, "LATENT"],
+    [15, 6, 2, 11, 1, "VAE"],
+    [16, 10, 0, 11, 0, "LATENT"],
+    [17, 11, 0, 12, 0, "IMAGE"],
+    [18, 11, 0, 13, 0, "IMAGE"]
+  ],
+  "groups": [
+    {
+      "title": "Camera Factory Station - E-commerce Product Chain",
+      "bounding": [50, 50, 2100, 350],
+      "color": "#d4891e",
+      "font_size": 24
+    },
+    {
+      "title": "ComfyUI Generation Pipeline",
+      "bounding": [50, 400, 2350, 650],
+      "color": "#8A8",
+      "font_size": 24
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.6,
+      "offset": [0, 0]
+    }
+  },
+  "version": 0.4
+}
